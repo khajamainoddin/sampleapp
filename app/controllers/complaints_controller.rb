@@ -5,7 +5,7 @@ class ComplaintsController < ApplicationController
   # GET /complaints
   # GET /complaints.json
   def index
-    @complaints = Complaint.all
+    @complaints = Complaint.accessible_by(current_ability)#all
   end
 
   # GET /complaints/1
@@ -26,7 +26,7 @@ class ComplaintsController < ApplicationController
   # POST /complaints.json
   def create
     @complaint = Complaint.new(complaint_params)
-
+    @complaint.user_id = current_user.id
     respond_to do |format|
       if @complaint.save
         format.html { redirect_to @complaint, notice: 'Complaint was successfully created.' }

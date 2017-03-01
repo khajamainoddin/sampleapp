@@ -12,15 +12,16 @@ class Ability
       can :dashboard
     end
     if user.supervisor_role?
-      
+      can :manage, :all
       can :edit, Complaint
       can :update, Complaint
       can :destroy, Complaint
       can :manage, User
     end
     if user.user_role?
-      can :read, :all
-      can :create, Complaint
+      can :read, Complaint, :user_id => user.id
+      can :create, Complaint, :user_id => user.id
+
     end
     #   if user.admin?
     #     can :manage, :all
