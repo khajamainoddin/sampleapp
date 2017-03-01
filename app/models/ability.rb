@@ -19,6 +19,8 @@ class Ability
       can :manage, User
     end
     if user.user_role?
+      
+      
       can :read, Complaint, :user_id => user.id
       can :create, Complaint, :user_id => user.id
 
