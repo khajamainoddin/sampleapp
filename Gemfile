@@ -23,6 +23,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'toastr-rails'
 
+gem 'bootstrap-sass'
+
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin'
 

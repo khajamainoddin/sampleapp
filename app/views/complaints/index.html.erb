@@ -1,2 +1,55 @@
-<h1>Complaints#index</h1>
-<p>Find me in app/views/complaints/index.html.erb</p>
+<div class="row">
+
+<div class="col-xs-6 col-md-4 pull-right">
+Register A Complaint? <br><span class="glyphicon glyphicon-hand-right blink_me" aria-hidden="true"></span>
+ <span class="blink_me"><%= link_to 'Click Here',  new_complaint_path, class: 'btn btn-min btn-default' %> </span>
+</div>
+</div>
+
+
+<h1>Complaints</h1>
+
+<div class="media">
+ 
+  <div class="media-body">
+    <table class="table table-hover">  
+     <thead>
+    <tr>
+      <th>Section</th>
+      <th>Name</th>
+      <th>Problem</th>
+      <th>Status</th>
+    <!--  <th>User</th> -->
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @complaints.each do |complaint| %>
+      <tr>
+        <td><%= complaint.section %></td>
+        <td><%= complaint.name %></td>
+        <td><%= complaint.problem %></td>
+        <% if can? :manage, User %>
+        <td><%= complaint.status %></td>
+        <% end %>  
+     <!--   <td><%= complaint.user %></td>  -->
+     
+        <td><%= link_to 'Show', complaint %></td>
+        
+        <% if can? :manage, User %>
+        <td><%= link_to 'Edit', edit_complaint_path(complaint) %></td>
+       <% end %>
+        <% if can? :manage, User %>
+        <td><%= link_to 'Destroy', complaint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+
+<br>
+<br>
+

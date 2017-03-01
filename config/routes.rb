@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
+  resources :complaints
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  get 'complaints/index'
-
   get 'welcome/index'
+
 
  devise_for :users, controllers: {
       sessions: 'users/sessions',

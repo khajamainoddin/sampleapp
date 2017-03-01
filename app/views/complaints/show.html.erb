@@ -1,0 +1,32 @@
+<div class="row">
+<div class="col-xs-6 col-md-6 ecom">
+<p>
+  <strong>Section:</strong>
+  <%= @complaint.section %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @complaint.name %>
+</p>
+
+<p>
+  <strong>Problem:</strong>
+  <%= @complaint.problem %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @complaint.status %>
+</p>
+
+<!-- 
+<p>
+  <strong>User:</strong>
+  <%= @complaint.user %>
+</p>
+-->
+<%= link_to 'Edit', edit_complaint_path(@complaint), class: 'btn btn-min btn-default' %> |
+<%= link_to 'Back', complaints_path, class: 'btn btn-min btn-default' %>
+</div>
+</div>

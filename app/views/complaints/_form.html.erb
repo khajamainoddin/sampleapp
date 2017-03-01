@@ -1,0 +1,81 @@
+<%= form_for(complaint) do |f| %>
+  <% if complaint.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(complaint.errors.count, "error") %> prohibited this complaint from being saved:</h2>
+
+      <ul>
+      <% complaint.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <div class="row">
+  
+ <div class="col-lg-6 col-md-6">
+  <div class="control-group">
+    <%= f.label :name, class: 'control-label' %><br>
+    <div class="controls">
+    <%= f.text_field :name, class: 'control-label' %>
+  </div>
+</div>
+</div>
+
+<br>
+
+  <div class="col-lg-6 col-md-6">
+  <div class="control-group">
+    <%= f.label :section, class: 'control-label' %> <br>
+    <div class="controls">
+    <%= f.select(:section, options_for_select([['TADA', 'TADA'], ['MEDICALL', 'MEDICALL'], ['ADMIN', 'ADMIN']]), { include_blank: true})  %>
+  </div>
+  </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6 col-md-6">
+  <div class="control-group">
+    <%= f.label :problem, class: 'control-label' %><br>
+    <div class="controls">
+    <%= f.text_field :problem, class: 'control-label' %>
+  </div>
+ </div>
+ </div>
+
+<% if can? :manage, User %>
+<div class="col-lg-6 col-md-6">
+  <div class="control-group">
+
+    <%= f.label :status, class: 'control-label' %><br>
+    <div class="controls">
+     <%= f.select(:status, options_for_select([['Pending', 'Pending'], ['Completed', 'Completed']]), { include_blank: true})  %>
+    
+    </div>
+  </div>
+  <% end %>
+
+ </div>
+
+ </div>
+ <br>
+<br>
+ <div class="row">
+  <div class="col-md-6 text-center">
+   <%= f.submit %>
+  </div>
+  </div>
+
+
+
+
+  
+
+  <!-- <div class="field">
+    <%= f.label :user_id %>
+    <%= f.text_field :user_id %>
+  </div>
+ -->
+  
+<% end %>

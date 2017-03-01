@@ -15,3 +15,11 @@
 //= require turbolinks 	
 //= require toastr
 //= require_tree .
+
+
+function blinker() {
+    $('.blink_me').fadeOut(100);
+    $('.blink_me').fadeIn(100);
+}
+
+setInterval(blinker, 1000);
