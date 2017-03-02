@@ -28,7 +28,8 @@
   <div class="control-group">
     <%= f.label :section, class: 'control-label' %> <br>
     <div class="controls">
-    <%= f.select(:section, options_for_select([['TADA', 'TADA'], ['MEDICALL', 'MEDICALL'], ['ADMIN', 'ADMIN']]), { include_blank: true})  %>
+    <!--<%= f.select(:section, options_for_select(['TADA', 'MEDICALL', 'ADMIN']), { include_blank: true})  %> -->
+    <%= f.select(:section, options_for_select([["TADA", "TADA"], ["MEDICALL", "MEDICALL"]], :selected => f.object.section), :include_blank => true) %>
   </div>
   </div>
   </div>
@@ -50,7 +51,7 @@
 
     <%= f.label :status, class: 'control-label' %><br>
     <div class="controls">
-     <%= f.select(:status, options_for_select([['Pending', 'Pending'], ['Completed', 'Completed']]), { include_blank: true})  %>
+     <%= f.select(:status, options_for_select(['Pending', 'Completed']))  %>
     
     </div>
   </div>

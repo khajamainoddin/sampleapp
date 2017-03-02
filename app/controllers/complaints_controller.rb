@@ -11,7 +11,9 @@ class ComplaintsController < ApplicationController
   # GET /complaints/1
   # GET /complaints/1.json
   def show
-  end
+  @complaint = Complaint.find(params[:id])
+  authorize! :show, @complaint
+end
 
   # GET /complaints/new
   def new
@@ -25,6 +27,7 @@ class ComplaintsController < ApplicationController
   # POST /complaints
   # POST /complaints.json
   def create
+   
     @complaint = Complaint.new(complaint_params)
     @complaint.user_id = current_user.id
     respond_to do |format|

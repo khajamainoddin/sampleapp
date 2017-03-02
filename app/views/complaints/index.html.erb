@@ -34,9 +34,9 @@ Register A Complaint? <br><span class="glyphicon glyphicon-hand-right blink_me" 
         <td><%= complaint.status %></td>
         <% end %>  
      <!--   <td><%= complaint.user %></td>  -->
-     
+ 
         <td><%= link_to 'Show', complaint %></td>
-        
+         
         <% if can? :manage, User %>
         <td><%= link_to 'Edit', edit_complaint_path(complaint) %></td>
        <% end %>
