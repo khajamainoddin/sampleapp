@@ -20,10 +20,12 @@ class Ability
     end
 
     if user.user_role?
-      
-      
+      #can [:create, :show], User, :id => user.id
+
+      can :create, :all
+    
       can :read, Complaint, :user_id => user.id
-      can :create, Complaint, :user_id => user.id
+     
     
     end
     #   if user.admin?

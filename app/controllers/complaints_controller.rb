@@ -1,7 +1,8 @@
 class ComplaintsController < ApplicationController
   before_action :set_complaint, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
-
+  
+   skip_authorize_resource :only => [:show, :create]  
   # GET /complaints
   # GET /complaints.json
   def index
@@ -11,8 +12,8 @@ class ComplaintsController < ApplicationController
   # GET /complaints/1
   # GET /complaints/1.json
   def show
-  @complaint = Complaint.find(params[:id])
-  authorize! :show, @complaint
+ 
+
 end
 
   # GET /complaints/new
@@ -30,8 +31,10 @@ end
    
     @complaint = Complaint.new(complaint_params)
     @complaint.user_id = current_user.id
+
     respond_to do |format|
       if @complaint.save
+         
         format.html { redirect_to @complaint, notice: 'Complaint was successfully created.' }
         format.json { render :show, status: :created, location: @complaint }
       else
