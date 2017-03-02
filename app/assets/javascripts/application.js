@@ -19,7 +19,7 @@
 
 function blinker() {
     $('.blink_me').fadeOut(100);
-    $('.blink_me').fadeIn(100);
+    $('.blink_me').fadeIn(1000);
 }
 
-setInterval(blinker, 1000);
+setInterval(blinker, 100000);
