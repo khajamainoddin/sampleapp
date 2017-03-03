@@ -38,7 +38,7 @@ Register A Complaint? <br><span class="glyphicon glyphicon-hand-right blink_me" 
         <td><%= complaint.status %></td>
         
         <% if can? :manage, User %>
-        <td><%= complaint.created_at %></td>
+        <td><%= complaint.created_at.strftime("%I:%M%p") %></td>
         <% end %>
      <!--   <td><%= complaint.user %></td>  -->
  
