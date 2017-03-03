@@ -40,8 +40,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
     # add_index :users, :unlock_token,         unique: true
 
     User.create! do |u|
-        u.username     = 'ravi'
-        u.password    = 'ravi123'
+        u.username     = 'khaja'
+        u.password    = 'khaja123'
     end
     
   end
