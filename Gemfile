@@ -30,6 +30,9 @@ gem 'rails_admin'
 
 gem 'cancancan'
 
+gem 'will_paginate'
+
+
 gem 'whenever', :require => false
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
