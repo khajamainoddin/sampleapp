@@ -19,7 +19,12 @@
   <strong>Status:</strong>
   <%= @complaint.status %>
 </p>
-
+ <% if can? :manage, User %>
+<p>
+  <strong>Created_at:</strong>
+  <%= @complaint.created_at %>
+</p>
+<% end %>
 <!-- 
 <p>
   <strong>User:</strong>
