@@ -8,10 +8,12 @@ class ComplaintsController < ApplicationController
   # GET /complaints
   # GET /complaints.json
   def index
-    @complaints = Complaint.accessible_by(current_ability)#all
-    @complaints = Complaint.paginate(:page => params[:page]).order('id').per_page(10)
+    @complaints = Complaint.accessible_by(current_ability).paginate(:page => params[:page]).order('user_id').per_page(10).order(created_at: :desc)#all
+    #.paginate(:page => params[:page]).order('id').per_page(2)
+
   end
 
+  
   # GET /complaints/1
   # GET /complaints/1.json
   def show
@@ -71,6 +73,10 @@ end
     end
   end
 
+
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_complaint
@@ -81,4 +87,7 @@ end
     def complaint_params
       params.require(:complaint).permit(:section, :name, :problem, :status, :user_id)
     end
+
+
+  
 end

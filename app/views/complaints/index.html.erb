@@ -29,7 +29,7 @@ Register A Complaint? <br><span class="glyphicon glyphicon-hand-right blink_me" 
   </thead>
 
   <tbody>
-    <% @complaints.each do |complaint| %>
+    <% @complaints.reverse_each do |complaint| %>
       <tr>
         <td><%= complaint.section %></td>
         <td><%= complaint.name %></td>
