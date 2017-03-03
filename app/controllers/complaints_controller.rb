@@ -3,10 +3,13 @@ class ComplaintsController < ApplicationController
   load_and_authorize_resource
   
    skip_authorize_resource :only => [:show, :create]  
+
+   
   # GET /complaints
   # GET /complaints.json
   def index
     @complaints = Complaint.accessible_by(current_ability)#all
+    @complaints = Complaint.paginate(:page => params[:page]).order('id').per_page(10)
   end
 
   # GET /complaints/1
