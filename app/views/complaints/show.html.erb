@@ -1,5 +1,4 @@
-<div class="row">
-<div class="col-xs-6 col-md-6 ecom">
+<div class="border-form-div">
 <p>
   <strong>Section:</strong>
   <%= @complaint.section %>
@@ -19,14 +18,19 @@
   <strong>Status:</strong>
   <%= @complaint.status %>
 </p>
-
+ <% if can? :manage, User %>
+<p>
+  <strong>Created_Time:</strong>
+  <%= @complaint.created_at %>
+</p>
+<% end %>
 <!-- 
 <p>
   <strong>User:</strong>
   <%= @complaint.user %>
 </p>
 -->
-<%= link_to 'Edit', edit_complaint_path(@complaint), class: 'btn btn-min btn-default' %> |
+ <% if can? :manage, User %>
+<%= link_to 'Edit', edit_complaint_path(@complaint), class: 'btn btn-min btn-default' %> |<% end %>
 <%= link_to 'Back', complaints_path, class: 'btn btn-min btn-default' %>
-</div>
 </div>

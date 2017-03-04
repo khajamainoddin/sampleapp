@@ -12,14 +12,25 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks 	
+//= require turbolinks
+//= require bootstrap-datepicker	
 //= require toastr
 //= require_tree .
+
+ $(document).ready(function(){
+    $('.datepicker').datepicker({
+    	dateFormat: "yy-mm-dd"
+    }).datepicker("setDate", "0");
+    });
+    
+
+
+
 
 
 function blinker() {
     $('.blink_me').fadeOut(100);
-    $('.blink_me').fadeIn(100);
+    $('.blink_me').fadeIn(1000);
 }
 
-setInterval(blinker, 1000);
+setInterval(blinker, 100000);

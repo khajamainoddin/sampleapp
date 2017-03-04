@@ -6,8 +6,18 @@ Register A Complaint? <br><span class="glyphicon glyphicon-hand-right blink_me" 
 </div>
 </div>
 
-
+<div class="row">
 <h1>Complaints</h1>
+<div class="pull-right range-query">
+<%= form_tag complaints_path, method: :get do %>
+  <%= text_field_tag 'search[date_from]', @search.date_from, :class => 'datepicker'  %>
+ 
+  <%= text_field_tag 'search[date_to]', @search.date_to, :class => 'datepicker' %>
+  <%= submit_tag 'Search', class: 'btn search-button' %>
+  <% end %>
+  </div>
+  </div>
+
 
 <div class="media">
  
@@ -18,36 +28,48 @@ Register A Complaint? <br><span class="glyphicon glyphicon-hand-right blink_me" 
       <th>Section</th>
       <th>Name</th>
       <th>Problem</th>
+     
       <th>Status</th>
+      <% if can? :manage, User %>
+      <th>Created_Time</th>
+      <% end %> 
     <!--  <th>User</th> -->
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @complaints.each do |complaint| %>
+    <% @complaints.reverse_each do |complaint| %>
       <tr>
         <td><%= complaint.section %></td>
         <td><%= complaint.name %></td>
         <td><%= complaint.problem %></td>
-        <% if can? :manage, User %>
+        
         <td><%= complaint.status %></td>
-        <% end %>  
-     <!--   <td><%= complaint.user %></td>  -->
-     
-        <td><%= link_to 'Show', complaint %></td>
         
         <% if can? :manage, User %>
-        <td><%= link_to 'Edit', edit_complaint_path(complaint) %></td>
+        <td><%= complaint.created_at.strftime("%I:%M%p") %></td>
+        <% end %>
+     <!--   <td><%= complaint.user %></td>  -->
+ 
+        <td><%= link_to 'Show', complaint, class: 'btn btn-sm btn-info' %></td>
+         
+        <% if can? :manage, User %>
+        <td><%= link_to 'Edit', edit_complaint_path(complaint), class: 'btn btn-sm btn-success' %></td>
        <% end %>
         <% if can? :manage, User %>
-        <td><%= link_to 'Destroy', complaint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', complaint, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %></td>
         <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 </div>
+
+<div class="apple_pagination">
+   
+    <%= will_paginate @complaints, :container => false %>
+  </div>
 </div>
 
 <br>

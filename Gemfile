@@ -29,6 +29,13 @@ gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin'
 
 gem 'cancancan'
+
+gem 'will_paginate'
+
+gem 'bootstrap-datepicker-rails'
+
+
+gem 'whenever', :require => false
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

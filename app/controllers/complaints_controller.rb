@@ -1,17 +1,27 @@
 class ComplaintsController < ApplicationController
   before_action :set_complaint, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
+  
+   skip_authorize_resource :only => [:show, :create]  
 
+   
   # GET /complaints
   # GET /complaints.json
   def index
-    @complaints = Complaint.accessible_by(current_ability)#all
+    @search = ComplaintSearch.new(params[:search])
+    @complaints = @search.scope
+    @complaints = Complaint.accessible_by(current_ability).paginate(:page => params[:page]).order('user_id').per_page(10).order(created_at: :desc)#all
+
+
   end
 
+  
   # GET /complaints/1
   # GET /complaints/1.json
   def show
-  end
+ 
+
+end
 
   # GET /complaints/new
   def new
@@ -25,10 +35,13 @@ class ComplaintsController < ApplicationController
   # POST /complaints
   # POST /complaints.json
   def create
+   
     @complaint = Complaint.new(complaint_params)
     @complaint.user_id = current_user.id
+
     respond_to do |format|
       if @complaint.save
+         
         format.html { redirect_to @complaint, notice: 'Complaint was successfully created.' }
         format.json { render :show, status: :created, location: @complaint }
       else
@@ -62,6 +75,10 @@ class ComplaintsController < ApplicationController
     end
   end
 
+
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_complaint
@@ -72,4 +89,7 @@ class ComplaintsController < ApplicationController
     def complaint_params
       params.require(:complaint).permit(:section, :name, :problem, :status, :user_id)
     end
+
+
+  
 end
