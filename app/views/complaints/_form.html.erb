@@ -72,7 +72,7 @@
 <% if can? :manage, User %>
  <div class="field">
     <%= f.label :created_at %>
-    <%= f.text_field :created_at %>
+    <%= f.text_field :created_at, :class => 'datepicker' %>
   </div>
 <% end %>
 <!--

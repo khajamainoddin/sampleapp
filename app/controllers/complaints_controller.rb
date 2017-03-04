@@ -8,8 +8,10 @@ class ComplaintsController < ApplicationController
   # GET /complaints
   # GET /complaints.json
   def index
+    @search = ComplaintSearch.new(params[:search])
+    @complaints = @search.scope
     @complaints = Complaint.accessible_by(current_ability).paginate(:page => params[:page]).order('user_id').per_page(10).order(created_at: :desc)#all
-    #.paginate(:page => params[:page]).order('id').per_page(2)
+
 
   end
 
